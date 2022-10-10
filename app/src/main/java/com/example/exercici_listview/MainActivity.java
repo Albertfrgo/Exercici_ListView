@@ -1,6 +1,7 @@
 package com.example.exercici_listview;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         // busquem la ListView i li endollem el ArrayAdapter
         ListView lv = (ListView) findViewById(R.id.recordsView);
         lv.setAdapter(adapter);
+        lv.setFastScrollEnabled(true);
 
         // botó per afegir entrades a la ListView
         Button b = (Button) findViewById(R.id.button);
