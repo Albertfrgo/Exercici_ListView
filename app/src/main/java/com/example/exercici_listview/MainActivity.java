@@ -9,6 +9,7 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,9 +25,12 @@ public class MainActivity extends AppCompatActivity {
     }
     // Model = Taula de records: utilitzem ArrayList
     ArrayList<Record> records;
+    String[] noms= {"Albert", "Sergio", "Edu", "Irene", "Jordi", "Alejandro", "Erik", "Isma", "Marc", "David", "Rafa", "Pablo", "Borja"};
 
     // ArrayAdapter serà l'intermediari amb la ListView
     ArrayAdapter<Record> adapter;
+    Random aleatori = new Random();
+    int posNom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +73,12 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i=0;i<500;i++) {
-                    records.add(new Record(100, "Anonymous"));
+                for(int i=0; i<100; i++){
+                    posNom=aleatori.nextInt(noms.length);
+                    records.add(new Record(aleatori.nextInt(100), noms[posNom]));
+                    // notificar l'adapter dels canvis al model
+                    adapter.notifyDataSetChanged();
                 }
-                // notificar l'adapter dels canvis al model
-                adapter.notifyDataSetChanged();
             }
         });
     }
